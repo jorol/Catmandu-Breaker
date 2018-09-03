@@ -24,6 +24,10 @@ sub add {
     for my $field (@$record) {
         my ($tag,$ind,@data) = @$field;
 
+        if (defined $ind && $ind ne '' && $ind ne ' ') {
+            $tag = "$tag\[$ind]";
+        }
+
         $self->tags->{$tag} = 1;
 
         for (my $i = 0 ; $i < @data ; $i += 2) {
